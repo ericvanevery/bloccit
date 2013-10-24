@@ -1,5 +1,13 @@
 require 'faker'
 
+topics = []
+15.times do
+  topics << Topic.create(
+    name: Faker::Lorem.words(rand(1..10)).join(" "), 
+    description: Faker::Lorem.paragraph(rand(1..4))
+  )
+
+
 rand(4..10).times do 
   password = Faker::Lorem.characters(10)
   u = User.new(
@@ -10,7 +18,8 @@ rand(4..10).times do
   u.skip_confirmation!
   u.save
 
- rand(5..10).times do   
+ rand(5..12).times do   
+  topic = topics.first # getting the first topic here
   p =u.posts.create(
     title: Faker::Lorem.words(rand(1..10)).join(" "),
     body: Faker::Lorem.paragraphs(rand(1.4)).join("\n"))
@@ -22,10 +31,40 @@ p.update_attribute(:created_at, Time.now - rand(600..31536000))
         body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"))
     end
   end
+
+
+end
+
 end
 
 
-puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
+u = User.new(
+  name: 'Admin User',
+  email: 'admin@example.com', 
+  password: 'helloworld', 
+  password_confirmation: 'helloworld')
+u.skip_confirmation!
+u.save
+u.update_attribute(:role, 'admin')
+
+u = User.new(
+  name: 'Moderator User',
+  email: 'moderator@example.com', 
+  password: 'helloworld', 
+  password_confirmation: 'helloworld')
+u.skip_confirmation!
+u.save
+u.update_attribute(:role, 'moderator')
+
+u = User.new(
+  name: 'Member User',
+  email: 'member@example.com', 
+  password: 'helloworld', 
+  password_confirmation: 'helloworld')
+u.skip_confirmation!
+u.save
+
+#puts "Seed finished"
+#puts "#{User.count} users created"
+#puts "#{Post.count} posts created"
+#puts "#{Comment.count} comments created"
