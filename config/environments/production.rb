@@ -68,4 +68,4 @@ Bloccit::Application.configure do
    # http://bloccit.herokuapp.com
   config.action_mailer.default_url_options = { :host => 'evanevery-bloccit.herokuapp.com' }  
 end
-end
+
