@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :posts
   before_create :set_member
   mount_uploader :avatar, AvatarUploader
-  mount_uploader :image, ImageUploader
+  #mount_uploader :image, ImageUploader
   # attr_accessible :title, :body
   ROLES = %w[member moderator admin]
 
