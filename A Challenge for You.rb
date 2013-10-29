@@ -28,9 +28,9 @@ After you've committed, work through the following steps on your own:
  #   process :resize_to_fill => [50, 50]
  # end
 
-Add the ability to upload image in the views/posts/_form.html.erb;
+#Add the ability to upload image in the views/posts/_form.html.erb;
 
-Display the uploaded image in the views/posts/show.html.erb;
+#Display the uploaded image in the views/posts/show.html.erb;
 
 Display the uploaded image in the views/topics/show.html.erb;
 
