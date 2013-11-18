@@ -5,21 +5,22 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :avatar, :image
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :avatar
+  # attr_accessible :title, :body
   has_many :posts
+  has_many :comments
   before_create :set_member
   mount_uploader :avatar, AvatarUploader
-  #mount_uploader :image, ImageUploader
-  # attr_accessible :title, :body
-  ROLES = %w[member moderator admin]
+  
 
+  ROLES = %w[member moderator admin]
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
-  end 
+  end  
 
   private
 
   def set_member
     self.role = 'member'
-   end 
+  end
 end
