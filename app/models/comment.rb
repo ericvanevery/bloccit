@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   belongs_to :user
-   attr_accessible :body, :post
+  attr_accessible :body, :post
  
    validates :body, length: { minimum: 5 }, presence: true
    validates :user, presence: true
@@ -17,4 +17,5 @@ class Comment < ActiveRecord::Base
       FavoriteMailer.new_comment(favorite.user, self.post, self).deliver
     end
   end
+end
 end
